@@ -57,6 +57,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  // Function to increment counter
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -65,6 +66,18 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+    });
+  }
+
+  // Function to decrement counter
+  void _decrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter--;
     });
   }
 
@@ -115,11 +128,33 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: Stack(
+        alignment: Alignment.bottomRight,
+        children: [
+          // First FAB (positioned higher)
+          Positioned(
+            bottom: 80.0, // Adjust position from bottom
+            right: 16.0, // Adjust position from right
+            child: FloatingActionButton(
+              heroTag: 'increment button', // Ensure unique hero tags
+              onPressed: _incrementCounter,
+              tooltip: 'Increment Counter',
+              child: const Icon(Icons.add),
+            ),
+          ),
+          // Second FAB
+          Positioned(
+            bottom: 16.0, // Standard FAB position
+            right: 16.0,
+            child: FloatingActionButton(
+              heroTag: 'decrement button',
+              onPressed: _decrementCounter,
+              tooltip: 'Decrement Counter',
+              child: const Icon(Icons.remove),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
