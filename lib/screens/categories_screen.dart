@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
 
-class Category {
-  final int id;
-  final String name;
-
-  Category({required this.id, required this.name});
-}
-
 class CategoriesScreen extends StatefulWidget {
-  final List<Category> categories;
 
-  const CategoriesScreen({super.key, required this.categories});
+  const CategoriesScreen({super.key});
 
   @override
   CategoriesScreenState createState() => CategoriesScreenState();
